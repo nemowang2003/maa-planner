@@ -8,11 +8,11 @@ from typing import Any
 import platformdirs
 import tomlkit
 
-APP_NAME = "maa-planner"
+APP_NAME = "maa_cli_planner"
 
 
 def default_config_file() -> Path:
-    return platformdirs.user_config_path(APP_NAME, ensure_exists=True) / "config.toml"
+    return Path.home() / ".config" / APP_NAME / "config.toml"
 
 
 def default_skland_auth_dir() -> Path:
@@ -67,7 +67,7 @@ class PlannerSettings:
 def load_settings(config_file: Path | None = None) -> PlannerSettings:
     path = (config_file or default_config_file()).expanduser().resolve()
     if not path.exists():
-        raise FileNotFoundError(f"配置文件不存在: {path}，请先运行 `maa-planner init`")
+        raise FileNotFoundError(f"配置文件不存在: {path}，请先运行 `maa_cli_planner init`")
     with path.open("rb") as fp:
         raw = tomllib.load(fp)
 

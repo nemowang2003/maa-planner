@@ -1,9 +1,9 @@
 import unittest
 from pathlib import Path
 
-from maa_planner.config import PlannerSettings
-from maa_planner.expert import PlanResult, TaskSpec
-from maa_planner.maa import render_profile, render_tasks
+from maa_cli_planner.config import PlannerSettings
+from maa_cli_planner.expert import PlanResult, TaskSpec
+from maa_cli_planner.maa import render_profile, render_tasks
 
 
 def _settings() -> PlannerSettings:

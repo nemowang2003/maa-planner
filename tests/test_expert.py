@@ -1,7 +1,7 @@
 import unittest
 
-from maa_planner.expert import choose_stage
-from maa_planner.skland_client import ActivityStage
+from maa_cli_planner.expert import choose_stage
+from maa_cli_planner.skland_client import ActivityStage
 
 
 class ChooseStageTest(unittest.TestCase):

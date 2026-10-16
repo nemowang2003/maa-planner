@@ -1,21 +1,26 @@
 [project]
 name = "maa-planner"
 version = "0.1.0"
-description = "Generate maa-cli task configs from Skland account data"
+description = "Plan tasks for maa-cli and manage MAA Windows desktop updates"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "platformdirs>=4.4.0",
+    "psutil>=7.2.2",
     "skland-api @ file:///Users/nemo/skland-api",
     "tomlkit>=0.13.3",
 ]
 
 [project.scripts]
-maa-planner = "maa_planner:main"
+maa_cli_planner = "maa_cli_planner:main"
+maa_desktop_planner = "maa_desktop_planner.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.7.8,<0.8.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = ["maa_cli_planner", "maa_desktop_planner"]
 
 [dependency-groups]
 dev = [

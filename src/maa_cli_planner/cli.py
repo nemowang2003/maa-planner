@@ -11,7 +11,7 @@ from .skland_client import fetch_snapshot
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="maa-planner")
+    parser = argparse.ArgumentParser(prog="maa_cli_planner")
     parser.add_argument(
         "--config",
         type=Path,

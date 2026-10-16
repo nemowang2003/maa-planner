@@ -1,6 +1,13 @@
 # maa-planner
 
-根据森空岛数据生成 `maa-cli` 的任务配置文件。
+本仓库提供两个独立的 Python 包和两个命令：
+
+- `maa_cli_planner`：根据森空岛数据规划 `maa-cli` 任务，当前决策层暂留空。
+- `maa_desktop_planner`：检查 Windows 桌面版 MAA 更新，临时规划各副本的 `gui.new.json`，并行运行后恢复原配置。参见 [Desktop 使用说明](docs/windows-desktop.md)。
+
+两套配置分别位于 `~/.config/maa_cli_planner/config.toml` 和 `~/.config/maa_desktop_planner/config.toml`。
+
+## maa_cli_planner
 
 当前实现聚焦于：
 
@@ -20,13 +27,13 @@ uv sync
 ## 初始化配置
 
 ```bash
-uv run maa-planner init
+uv run maa_cli_planner init
 ```
 
 默认会写入：
 
 ```text
-~/.config/maa-planner/config.toml
+~/.config/maa_cli_planner/config.toml
 ```
 
 示例配置里默认读取 `skland-api` 的认证目录：
@@ -50,7 +57,7 @@ character_name = "你的角色昵称"
 ## 生成任务
 
 ```bash
-uv run maa-planner plan
+uv run maa_cli_planner plan
 ```
 
 默认输出到：
