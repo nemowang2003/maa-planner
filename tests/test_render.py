@@ -39,7 +39,6 @@ class RenderTest(unittest.TestCase):
             PlanResult(
                 user_name="main",
                 character_name="Doctor",
-                stage="SL-8",
                 reason="picked",
                 tasks=[
                     TaskSpec(

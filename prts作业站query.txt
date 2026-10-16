@@ -1,0 +1,1 @@
+curl --url 'https://prts.maa.plus/set/query' -H 'content-type: application/json' --data-raw '{"page":1,"limit":50,"creator_id":"7661","only_following":false,"desc":true}'

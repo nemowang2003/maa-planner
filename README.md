@@ -12,9 +12,10 @@
 当前实现聚焦于：
 
 - 读取 `skland-api` 的本地认证文件。
-- 拉取当前活动、仓库材料、理智、公招、基建状态。
-- 用硬编码规则挑选活动关卡或默认关卡。
-- 输出 `maa-cli` 的 `tasks/*.toml`，可选输出 `profiles/*.toml`。
+- 通过 `AuthInfo.full_auth()` 完成认证。
+- 手动调用 `skland_api.modules.*` 拉取当前活动、仓库材料、理智、公招、基建状态。
+- 为后续专家系统保留独立决策层。
+- 可选输出 `maa-cli` 的 `profiles/*.toml`。
 
 ## 安装
 
@@ -66,6 +67,14 @@ uv run maa_cli_planner plan
 ~/.config/maa/tasks/daily-<user>.toml
 ```
 
+当前专家系统仍留空，所以执行 `plan` 时不会写出任务或 profile 文件；建议先用：
+
+```bash
+uv run maa_cli_planner plan --dry-run
+```
+
+查看各个 `modules.*` 的采集结果摘要。
+
 如果配置了：
 
 ```toml
@@ -73,20 +82,31 @@ uv run maa_cli_planner plan
 write_profile = true
 ```
 
-并补全 `[profile]`，还会额外写入：
+并补全 `[profile]`，在专家系统返回非空任务后才会额外写入：
 
 ```text
 ~/.config/maa/profiles/<profile_name>.toml
 ```
 
-## 规则
+## 当前流程
 
-当前“专家系统”比较简单：
+现在的职责拆分是：
 
-- 活动关卡按 `materials` / `users.<name>.materials` 权重选最高分。
-- 没有命中活动掉落偏好时，回退到 `defaults.fallback_stage`。
-- 公招存在空位或可刷新次数时，追加 `Recruit` 任务。
-- 无人机达到阈值或存在疲劳干员时，追加 `Infrast` 任务。
-- 始终生成 `StartUp`、`Fight`、`Award`。
+- `skland_client.py` 负责认证、选角、`CharacterInfoLoader.full_load()` 和 `modules.*` 调用。
+- `expert.py` 只保留一个空的规划接口，后续由你手写规则。
+- `maa.py` 继续负责把规划结果写成 `maa-cli` 的 TOML。
 
-后续可以继续扩展成更细的策略，例如按周常进度、理智即将溢出、材料库存下限、活动剩余时间等动态调参。
+## 开发验证与当前边界
+
+```bash
+uv sync --dev
+uv run pytest -q
+uv run ty check
+uv run pre-commit run --all-files
+```
+
+CLI 已完成认证、选角、六个状态模块采集及 JSON 摘要输出。专家规则仍是明确保留的扩展点，示例中的材料权重和任务参数暂不参与决策。
+
+Desktop 已完成版本检查、完整包地址定位、资源更新、临时配置、并行运行和异常恢复；程序完整包的自动安装与回滚尚未实现。桌面进程和恢复逻辑有自动化测试，仍需在真实 Windows / MAA 环境验收。
+
+`prts作业站query.txt` 是作业站查询的手动参考，尚未接入规划流程。
