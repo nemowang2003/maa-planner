@@ -1,0 +1,53 @@
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = 7927998477614868331
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = 8768385696328112657
+	string m_Name = ""
+	PPtr<$Sprite> _priceIcon
+		int m_FileID = 0
+		SInt64 m_PathID = -8249299316173086377
+	PPtr<$Sprite> _priceIconWithShadow
+		int m_FileID = 0
+		SInt64 m_PathID = 1423798490990696240
+	ColorRGBA _priceColor
+		float r = 0.6509804
+		float g = 0.3137255
+		float b = 0.007843138
+		float a = 1
+	ColorRGBA _resBarColor
+		float r = 0.6509804
+		float g = 0.3137255
+		float b = 0.007843138
+		float a = 1
+	PPtr<$Sprite> _resBarCoinWithIcon
+		int m_FileID = 0
+		SInt64 m_PathID = -8249299316173086377
+	UInt8 _textColorBlackFlag = 0
+	PPtr<$Sprite> _titleImg
+		int m_FileID = 0
+		SInt64 m_PathID = 2399413215787629850
+	PPtr<$Sprite> _bannerImg
+		int m_FileID = 0
+		SInt64 m_PathID = 5706237544137235913
+	PPtr<$Sprite> _backImg
+		int m_FileID = 0
+		SInt64 m_PathID = -3151638117934524855
+	PPtr<$Sprite> _shopIcon
+		int m_FileID = 0
+		SInt64 m_PathID = 5316436766722630934
+	vector _customRarityBgList
+		Array Array
+		int size = 0
+	PPtr<$Sprite> _groupBG
+		int m_FileID = 0
+		SInt64 m_PathID = 0
+	PPtr<$AutoPackSpriteHub> _groupBkgHub
+		int m_FileID = 0
+		SInt64 m_PathID = 0
+	vector _qualityBgList
+		Array Array
+		int size = 0

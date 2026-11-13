@@ -1,0 +1,276 @@
+{
+  "commit": "b1031d1035e8df3042f601e33d5c1dfab8345d59",
+  "activity_table": {
+    "basicInfo": {
+      "act55side": {
+        "id": "act55side",
+        "type": "TYPE_ACT55SIDE",
+        "displayType": "NONE",
+        "name": "时间啊，向前！",
+        "startTime": 1793487600,
+        "endTime": 1795291199,
+        "rewardEndTime": 1795895999,
+        "displayOnHome": true,
+        "hasStage": true,
+        "templateShopId": "shop_act55side",
+        "medalGroupId": "medalGroupActivity55side",
+        "ungroupedMedalIds": null,
+        "isReplicate": false,
+        "needFixedSync": false,
+        "trapDomainId": "template_trap_55side",
+        "recType": "SPECIAL",
+        "isPageEntry": false,
+        "isMagnify": false,
+        "picGroup": {},
+        "usePicGroup": false
+      }
+    },
+    "activityTemplateMissionStyles": {
+      "act55side": {
+        "isMissionBgCustomType": false,
+        "bigRewardType": "ILLUST_CHAR_REWARD",
+        "bigRewardParamList": [
+          "char_4246_dminon",
+          "通关TL-5后可招募此干员",
+          "8b3503",
+          "279.3,-76.2"
+        ],
+        "isMissionListCommonType": true,
+        "isMissionItemCommonType": false,
+        "missionItemMainColor": null,
+        "isMissionItemCompleteUseMainColor": false,
+        "missionItemCompleteColor": null,
+        "isMissionRewardItemCommonType": true,
+        "isClaimAllBtnCommonType": false,
+        "claimAllBtnMainColor": null,
+        "claimAllBtnTips": null,
+        "titleType": "COMMON",
+        "coinType": "COMMON",
+        "coinBackColor": "a65002"
+      }
+    },
+    "missionData": [
+      {
+        "id": "55sideActivity_1",
+        "description": "通关TL-1",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_2",
+        "description": "通关TL-2",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_3",
+        "description": "通关TL-3",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_4",
+        "description": "通关TL-4",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_5",
+        "description": "通关TL-5",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_6",
+        "description": "通关TL-6",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_7",
+        "description": "以3星评价完成TL-6",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_8",
+        "description": "通关TL-7",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_9",
+        "description": "以3星评价完成TL-7",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_10",
+        "description": "通关TL-8",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_11",
+        "description": "以3星评价完成TL-8",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_12",
+        "description": "通关TL-9",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_13",
+        "description": "以3星评价完成TL-9",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_14",
+        "description": "通关TL-10",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_15",
+        "description": "以3星评价完成TL-10",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_16",
+        "description": "通关TL-EX-1",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_17",
+        "description": "通关TL-EX-2",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_18",
+        "description": "通关TL-EX-3",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_19",
+        "description": "通关TL-EX-4",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_20",
+        "description": "通关TL-EX-5",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_21",
+        "description": "通关TL-EX-6",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_22",
+        "description": "通关TL-EX-7",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_23",
+        "description": "通关TL-EX-8",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_24",
+        "description": "通关TL-EX-8突袭模式",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_25",
+        "description": "以3星评价完成TL-S-1",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_26",
+        "description": "以3星评价完成TL-S-2",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_27",
+        "description": "以3星评价完成TL-S-3",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_28",
+        "description": "以3星评价完成TL-S-4",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_29",
+        "description": "通关活动关卡15次,不含教学关",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_30",
+        "description": "通关活动关卡45次,不含教学关",
+        "missionGroup": "act55side"
+      },
+      {
+        "id": "55sideActivity_31",
+        "description": "通关活动关卡85次,不含教学关",
+        "missionGroup": "act55side"
+      }
+    ],
+    "zoneToActivity": {
+      "act55side_zone1": "act55side",
+      "act55side_zone2": "act55side",
+      "act55side_zone3": "act55side"
+    }
+  },
+  "zone_table": {
+    "zones": {
+      "act55side_zone1": {
+        "zoneID": "act55side_zone1",
+        "zoneIndex": 0,
+        "type": "ACTIVITY",
+        "zoneNameFirst": null,
+        "zoneNameSecond": "残照终尽",
+        "zoneNameTitleCurrent": null,
+        "zoneNameTitleUnCurrent": null,
+        "zoneNameTitleEx": null,
+        "zoneNameThird": null,
+        "lockedText": null,
+        "antiSpoilerId": null,
+        "canPreview": false,
+        "hasAdditionalPanel": false,
+        "sixStarMilestoneGroupId": null,
+        "bindMainlineZoneId": null,
+        "bindMainlineRetroZoneId": null,
+        "diamondRewardCount": 0
+      },
+      "act55side_zone2": {
+        "zoneID": "act55side_zone2",
+        "zoneIndex": 1,
+        "type": "ACTIVITY",
+        "zoneNameFirst": null,
+        "zoneNameSecond": "长冬初青",
+        "zoneNameTitleCurrent": null,
+        "zoneNameTitleUnCurrent": null,
+        "zoneNameTitleEx": null,
+        "zoneNameThird": null,
+        "lockedText": null,
+        "antiSpoilerId": null,
+        "canPreview": false,
+        "hasAdditionalPanel": false,
+        "sixStarMilestoneGroupId": null,
+        "bindMainlineZoneId": null,
+        "bindMainlineRetroZoneId": null,
+        "diamondRewardCount": 0
+      },
+      "act55side_zone3": {
+        "zoneID": "act55side_zone3",
+        "zoneIndex": 2,
+        "type": "ACTIVITY",
+        "zoneNameFirst": null,
+        "zoneNameSecond": "世纪之春",
+        "zoneNameTitleCurrent": null,
+        "zoneNameTitleUnCurrent": null,
+        "zoneNameTitleEx": null,
+        "zoneNameThird": null,
+        "lockedText": null,
+        "antiSpoilerId": null,
+        "canPreview": false,
+        "hasAdditionalPanel": false,
+        "sixStarMilestoneGroupId": null,
+        "bindMainlineZoneId": null,
+        "bindMainlineRetroZoneId": null,
+        "diamondRewardCount": 0
+      }
+    }
+  }
+}

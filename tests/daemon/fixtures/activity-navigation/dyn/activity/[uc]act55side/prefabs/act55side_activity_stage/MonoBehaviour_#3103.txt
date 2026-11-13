@@ -1,0 +1,16 @@
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = 600843690420130721
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = 1767319957785496134
+	string m_Name = ""
+	string _bindParam = "tempalte_mission"
+	PPtr<$UICommonTrackPoint> _trackPoint
+		int m_FileID = 0
+		SInt64 m_PathID = 5871380647898436513
+	PPtr<$UIActTrackPoint> _actTrackPoint
+		int m_FileID = 0
+		SInt64 m_PathID = 0

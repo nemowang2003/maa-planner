@@ -1,0 +1,323 @@
+# 静态配置示例，不代表完整目标日常已实现；任务按配置顺序执行，不自动重排。
+# 准备阶段先采集 Skland 并固定库存决策，再执行唤醒；当前串行流程已被接受。
+# OperBox／Depot 是独立的 Core 数据识别任务，不替代开头的 Skland 采集。
+# 多账号日常调度示例。默认配置路径为 %LOCALAPPDATA%/maa-planner/config.toml。
+# 这是配置写法演示，不是本机四账号的实际排班；日程均先关闭，填好文件和认证后再启用。
+# 所有时间使用 Asia/Shanghai；相对文件路径以实际 config.toml 所在目录为基准。
+#
+# 时间    账号                       任务差异
+# 02:40   nemo / minepig / wyf / zy   共用凌晨奖励、仓库任务
+# 12:10   nemo                       expert 基建 + 剿灭 + 1-7 + 商店、公招等完整流程
+# 12:10   minepig                    固定三赤金 + CE-6
+# 12:10   wyf / zy                   共用 CA-5 材料任务
+# 15:40   wyf                        仅 wyf：expert 基建 + AP-5
+# 19:40   nemo / minepig / wyf / zy   共用晚间公招、奖励任务
+# 23:40   nemo                       仅 nemo：邮件与数据更新
+#
+# 同一份任务用于多个账号：把账号列在同一个 profiles 数组中。
+# 同刻不同参数／每次上线不同参数：使用不同 id 的 schedules，即使时间相同。
+# 同一个 schedule 的多个 times 会使用相同任务，因此这里按不同任务分别配置。
+
+[mumu]
+path = 'C:\Program Files\Netease\MuMu'
+
+[maa_core]
+directory = 'C:\MAA\core-runtime'
+touch_mode = "MiniTouch"
+# resource_dir = 'C:\MAA\share\maa-resource\resource'
+
+# APK 自动更新独立于日常 schedules。默认启用、北京时间 11:00；本示例显式关闭，按需启用。
+[game_update]
+enabled = false
+time = "11:00"
+poll_interval = 30  # 10、30、60 秒；黄色 START 出现后关闭游戏，不点击进入登录。
+resource_timeout = 3600
+
+# 缓存维护不启动游戏，保留活跃依赖及恢复现场；可关闭。
+[cleanup]
+enabled = true
+apk_days = 1
+download_days = 3
+cache_days = 3
+core_keep = 2
+
+[skland]
+auth_dir = "~/.config/skland-api/auth"
+
+# emulator_name 对应 MuMu 中的实例名；auth_name 对应认证文件名，不含 .json。
+# 多个账号可以共用一个 auth_name，再通过 character_name 选择不同绑定角色。
+[[profiles]]
+name = "nemo"
+emulator_name = "nemo"
+auth_name = "nemo"
+enabled = true
+# character_name = "角色昵称"
+# gui_path = 'C:\MAA\profiles\nemo'  # 可选：检查人工 GUI 是否占用
+
+[[profiles]]
+name = "minepig"
+emulator_name = "minepig"
+auth_name = "minepig"
+enabled = true
+
+[[profiles]]
+name = "wyf"
+emulator_name = "wyf"
+auth_name = "wyf"
+enabled = true
+
+[[profiles]]
+name = "zy"
+emulator_name = "zy"
+auth_name = "zy"
+enabled = true
+
+# 四个账号共用一份任务，任务参数对四者相同。
+[[schedules]]
+id = "morning-shared"
+profiles = ["nemo", "minepig", "wyf", "zy"]
+times = ["02:40"]
+enabled = false
+execution_timeout = 1200
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "凌晨奖励"
+type = "Award"
+params = { award = true, mail = true, recruit = false, orundum = false, mining = false }
+
+[[schedules.tasks]]
+type = "Depot"
+
+# nemo 中午：完整流程，并演示 expert。每个账号使用各自的四份原生基建文件。
+# expert 读取 Skland 实际产物、当前配方和库存；不会自动进入搓玉，也不会自动切配方。
+# Infrast expert 根据库存选择基建；剿灭 Fight expert 根据周进度决定是否执行。
+# 普通 Fight expert：非垃圾活动选材料图，其余时间优先补芯片（16 种默认各 20）。
+# 普通 Fight 不设 times，固定 series=0 自动连战；用药和源石仍按配置。
+# 没有今日可补芯片时按后备列表选图；配置商店入口后可按材料阈值及完整通关／无限池证据联合确认垃圾时间。
+[[schedules]]
+id = "nemo-noon-expert"
+# 活动自动通关固定启用：从作者 7661 自动选集合；普通全拥有，EX／S 每关最多缺一人。
+# 普通区关闭助战，EX／S 缺人时借助战；优先一摆到底，不可用才尝试同作者其他集合。
+# 自动通关后已开放关卡的账本仍有缺项时跳过本轮普通 Fight，继续其余日常；不以作业集跑完代替全通。
+# 商店入口由项目维护，普通 Fight 后按资格自动购买；未知入口不尝试。
+# shop_blacklist = ["模组增补仪", "模组增补条", "家具零件"]  # 默认名单，与刷材料排除名单独立。
+# garbage_material_threshold = 100  # 全部普通材料推荐中非黑名单材料都须达标。
+profiles = ["nemo"]
+times = ["12:10"]
+enabled = false
+execution_timeout = 7200
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "库存驱动基建"
+type = "Infrast"
+strategy = "expert"
+plan_index = "auto"  # 按选中文件的 plans[].period 选择子计划
+
+# 可选：显式启用指定干员加工，先加工、后执行本基建任务；示例默认不启用。
+# [schedules.tasks.processing]
+# operators = ["年", "芳汀", "九色鹿"]  # 九色鹿告警并跳过。
+# targets = { T3 = 20, T4 = 10, "聚合剂" = 15 }  # T3 紫色、T4 橙色。
+# strategy = { "年" = ["聚合剂", "T3", "-炽合金块"], "芳汀" = ["T4"] }
+
+[schedules.tasks.files]
+normal = "base/nemo/两赤金.json"
+three_gold = "base/nemo/三赤金.json"
+orundum = "base/nemo/搓玉.json"
+sell_only = "base/nemo/只卖不搓.json"
+
+[schedules.tasks.params]
+facility = ["Trade", "Mfg", "Control", "Power", "Office", "Reception", "Recycle", "Processing", "Training", "Dorm", "AssistantChange"]
+drones = "CombatRecord"
+threshold = 0.37  # Core 的心情阈值；expert 库存切换阈值见 configuration.md 和 roadmap.md
+replenish = true
+dorm_notstationed_enabled = true
+dorm_trust_enabled = true
+reception_message_board = true
+reception_clue_exchange = true
+reception_send_clue = true
+continue_training = false
+
+[[schedules.tasks]]
+name = "本周剿灭"
+type = "Fight"
+strategy = "expert"  # 不限定周一：未完成时在下个 batch 重新判断。
+params = { stage = "Annihilation", medicine = 0, stone = 0, medicine_expire_days = 0, times = 5, series = 0, client_type = "Official" }
+
+[[schedules.tasks]]
+name = "中午理智作战"
+type = "Fight"
+strategy = "expert"
+fallback_stages = ["1-7"]  # 可通过配置 API 改为 ["AP-5", "1-7"]。
+# chip_targets = {}  # 可选：空表禁用芯片保持；省略时 16 种芯片／芯片组各 20。
+params = { stage = "1-7", medicine = 0, stone = 0, medicine_expire_days = 2, series = 0, client_type = "Official", DrGrandet = false }
+
+[[schedules.tasks]]
+name = "信用收支"
+type = "Mall"
+[schedules.tasks.params]
+shopping = true
+visit_friends = false
+credit_fight = false
+buy_first = ["招聘许可", "龙门币", "源岩", "装置", "赤金"]
+blacklist = ["碳", "家具", "加急许可"]
+force_shopping_if_credit_full = true
+only_buy_discount = false
+reserve_max_credit = false
+
+[[schedules.tasks]]
+name = "中午公招"
+type = "Recruit"
+[schedules.tasks.params]
+times = 1
+refresh = true
+select = [3, 4]
+confirm = [3, 4]
+extra_tags_mode = 0
+first_tags = ["近战位", "近卫干员", "输出", "生存"]
+preserve_tags = ["支援机械"]
+recruitment_time = { "3" = 540, "4" = 540 }
+level3_recruitment_permit_reserve = 0
+expedite = false
+
+[[schedules.tasks]]
+name = "领取奖励"
+type = "Award"
+params = { award = true, mail = true, recruit = true, orundum = true, mining = true, specialaccess = true, signinevent = false }
+
+[[schedules.tasks]]
+name = "切换主题"
+type = "SwitchTheme"
+params = { themes = [] }  # 填游戏内已解锁的主题名；空列表跳过，多个名称由 Core 随机选择。
+
+# 与 nemo 同时上线，但 minepig 使用固定文件，不读取 Skland 库存、不做 expert 切换。
+[[schedules]]
+id = "minepig-noon-fixed"
+profiles = ["minepig"]
+times = ["12:10"]
+enabled = false
+execution_timeout = 3600
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "固定三赤金"
+type = "Infrast"
+strategy = "fixed"
+file = "base/minepig/三赤金.json"
+plan_index = "auto"
+params = { facility = ["Trade", "Mfg", "Control", "Power", "Office", "Reception", "Dorm"], threshold = 0.4, replenish = false, dorm_trust_enabled = false }
+
+[[schedules.tasks]]
+name = "龙门币作战"
+type = "Fight"
+params = { stage = "CE-6", medicine = 0, stone = 0, medicine_expire_days = 0, series = 0, client_type = "Official" }
+
+[[schedules.tasks]]
+type = "Award"
+params = { award = true, mail = true }
+
+# wyf 和 zy 共用中午材料任务；与其他两号同时上线，参数和任务内容不同。
+# 示例关卡不会按开放日自动替换，需自行选择当日可运行的关卡。
+[[schedules]]
+id = "materials-noon-shared"
+profiles = ["wyf", "zy"]
+times = ["12:10"]
+enabled = false
+execution_timeout = 2400
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "技能书作战"
+type = "Fight"
+params = { stage = "CA-5", medicine = 0, stone = 0, medicine_expire_days = 0, series = 0, client_type = "Official" }
+
+[[schedules.tasks]]
+type = "Award"
+params = { award = true, mail = false, recruit = true }
+
+# 下午只运行 wyf。expert 使用 wyf 自己的四份文件；此处的参数独立于 nemo 中午。
+[[schedules]]
+id = "wyf-afternoon-expert"
+profiles = ["wyf"]
+times = ["15:40"]
+enabled = false
+execution_timeout = 5400
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "wyf 库存驱动基建"
+type = "Infrast"
+strategy = "expert"
+plan_index = "auto"
+
+[schedules.tasks.files]
+normal = "base/wyf/两赤金.json"
+three_gold = "base/wyf/三赤金.json"
+orundum = "base/wyf/搓玉.json"
+sell_only = "base/wyf/只卖不搓.json"
+
+[schedules.tasks.params]
+facility = ["Trade", "Mfg", "Control", "Power", "Office", "Reception", "Recycle", "Processing", "Training", "Dorm", "AssistantChange"]
+threshold = 0.45  # 同为心情阈值；此日程不会改变 expert 的库存规则
+replenish = true
+dorm_notstationed_enabled = true
+dorm_trust_enabled = false
+reception_message_board = true
+reception_clue_exchange = true
+reception_send_clue = false
+continue_training = false
+
+[[schedules.tasks]]
+name = "采购凭证作战"
+type = "Fight"
+params = { stage = "AP-5", medicine = 0, stone = 0, medicine_expire_days = 1, series = 0, client_type = "Official" }
+
+[[schedules.tasks]]
+type = "Depot"
+
+# 晚间仍是四号共用任务，但与凌晨、中午的参数不同；此时不刷图、不换班。
+[[schedules]]
+id = "evening-shared"
+profiles = ["nemo", "minepig", "wyf", "zy"]
+times = ["19:40"]
+enabled = false
+execution_timeout = 1800
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "晚间公招"
+type = "Recruit"
+params = { times = 2, refresh = false, select = [3, 4], confirm = [3, 4], preserve_tags = ["支援机械"], expedite = false }
+
+[[schedules.tasks]]
+name = "晚间奖励"
+type = "Award"
+params = { award = true, mail = true, recruit = true, orundum = true, mining = true }
+
+# 夜间只运行 nemo，任务与该号中午的静态任务组合不同。
+[[schedules]]
+id = "nemo-night-data"
+profiles = ["nemo"]
+times = ["23:40"]
+enabled = false
+execution_timeout = 900
+client_type = "Official"
+session = { startup = { start_game_enabled = true }, closedown = {} }
+
+[[schedules.tasks]]
+name = "仅领取邮件"
+type = "Award"
+params = { award = false, mail = true, recruit = false, orundum = false, mining = false }
+
+[[schedules.tasks]]
+type = "OperBox"
+
+[[schedules.tasks]]
+type = "Depot"

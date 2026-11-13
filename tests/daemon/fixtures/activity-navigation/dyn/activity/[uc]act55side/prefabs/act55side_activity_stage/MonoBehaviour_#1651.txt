@@ -1,0 +1,126 @@
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = -3891443631928847455
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = 2866189912293311487
+	string m_Name = ""
+	Navigation m_Navigation
+		int m_Mode = 3
+		UInt8 m_WrapAround = 0
+		PPtr<$Selectable> m_SelectOnUp
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Selectable> m_SelectOnDown
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Selectable> m_SelectOnLeft
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Selectable> m_SelectOnRight
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+	int m_Transition = 1
+	ColorBlock m_Colors
+		ColorRGBA m_NormalColor
+			float r = 1
+			float g = 1
+			float b = 1
+			float a = 1
+		ColorRGBA m_HighlightedColor
+			float r = 0.9607843
+			float g = 0.9607843
+			float b = 0.9607843
+			float a = 1
+		ColorRGBA m_PressedColor
+			float r = 0.7
+			float g = 0.7
+			float b = 0.7
+			float a = 1
+		ColorRGBA m_SelectedColor
+			float r = 0.9607843
+			float g = 0.9607843
+			float b = 0.9607843
+			float a = 1
+		ColorRGBA m_DisabledColor
+			float r = 0.78431374
+			float g = 0.78431374
+			float b = 0.78431374
+			float a = 0.5019608
+		float m_ColorMultiplier = 1
+		float m_FadeDuration = 0.1
+	SpriteState m_SpriteState
+		PPtr<$Sprite> m_HighlightedSprite
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Sprite> m_PressedSprite
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Sprite> m_SelectedSprite
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+		PPtr<$Sprite> m_DisabledSprite
+			int m_FileID = 0
+			SInt64 m_PathID = 0
+	AnimationTriggers m_AnimationTriggers
+		string m_NormalTrigger = "Normal"
+		string m_HighlightedTrigger = "Highlighted"
+		string m_PressedTrigger = "Pressed"
+		string m_SelectedTrigger = "Highlighted"
+		string m_DisabledTrigger = "Disabled"
+	UInt8 m_Interactable = 1
+	PPtr<$Graphic> m_TargetGraphic
+		int m_FileID = 0
+		SInt64 m_PathID = -4860220485387299935
+	ButtonClickedEvent m_OnClick
+		PersistentCallGroup m_PersistentCalls
+			PersistentCall m_Calls
+				Array Array
+				int size = 1
+					[0]
+					PersistentCall data
+						PPtr<$Object> m_Target
+							int m_FileID = 0
+							SInt64 m_PathID = -3363254455702924383
+						string m_TargetAssemblyTypeName = "Torappu.UI.ActivityStage.TemplateActivityStageMapDecor, Assembly-CSharp"
+						string m_MethodName = "EventOnShopBtnClicked"
+						int m_Mode = 1
+						ArgumentCache m_Arguments
+							PPtr<$Object> m_ObjectArgument
+								int m_FileID = 0
+								SInt64 m_PathID = 0
+							string m_ObjectArgumentAssemblyTypeName = "UnityEngine.Object, UnityEngine"
+							int m_IntArgument = 0
+							float m_FloatArgument = 0
+							string m_StringArgument = ""
+							UInt8 m_BoolArgument = 0
+						int m_CallState = 2
+	ClickGuardModule _clickGuard
+		int guardMask = 30
+		UInt8 cooldown = 0
+		float seconds = 0.5
+	AudioModule _audio
+		int soundType = 0
+		int internalType = 0
+		int buildingSoundType = 0
+		string signal = ""
+		string subsignal = ""
+	LongPressModule _longPress
+		UInt8 useLongPress = 0
+		UInt8 continuous = 1
+		UInt8 excludeClick = 1
+		float pThresSecs = 0.5
+		float intervalSecs = 0.2
+		ButtonClickedEvent events
+			PersistentCallGroup m_PersistentCalls
+				PersistentCall m_Calls
+					Array Array
+					int size = 0
+	BindKeyCodeModule _bindKey
+		UInt8 bindKeyFlag = 0
+		int bindingkeyCode = 2
+		PPtr<$RectTransform> bindRect
+			int m_FileID = 0
+			SInt64 m_PathID = -4218743661657533535
