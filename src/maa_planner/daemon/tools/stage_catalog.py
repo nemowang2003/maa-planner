@@ -95,6 +95,7 @@ def load_processing_catalog(cache: Path, commit: str) -> dict:
             if document.get("commit") == commit and all(
                 isinstance(document.get(k), dict) for k in ("building_data", "item_table")
             ):
+                touch_cache(path)
                 return document
             raise ValueError("加工目录缓存版本不匹配")
         base = f"{GITHUB_RAW_URL}/{STAGE_DATA_REPOSITORY}/{commit}/cn/gamedata/excel"

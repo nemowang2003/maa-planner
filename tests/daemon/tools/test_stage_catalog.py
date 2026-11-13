@@ -63,3 +63,27 @@ def test_processing_recipes_and_rarity_use_the_requested_immutable_commit(tmp_pa
     assert {url.rsplit("/", 1)[-1] for url in reads} == {"building_data.json", "item_table.json"}
     assert stage_catalog.load_processing_catalog(tmp_path, sha) == first
     assert len(reads) == 2
+
+
+def test_reused_processing_catalog_survives_idle_cache_cleanup(tmp_path, monkeypatch):
+    import os
+
+    from maa_planner.daemon.tools.cache_cleanup import clean_cache
+    from tests.helpers.cache_cleanup import settings
+
+    config = settings(tmp_path)
+    sha = "d" * 40
+    reads = []
+
+    def get(url):
+        reads.append(url)
+        return {"source": url}
+
+    monkeypatch.setattr(stage_catalog, "_get", get)
+    first = stage_catalog.load_processing_catalog(config.cache_directory, sha)
+    path = config.cache_directory / "processing-catalog" / (sha + ".json")
+    os.utime(path, (0, 0))
+    assert stage_catalog.load_processing_catalog(config.cache_directory, sha) == first
+    assert len(reads) == 2
+    clean_cache(config)
+    assert path.exists()
