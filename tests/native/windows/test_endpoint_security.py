@@ -47,3 +47,19 @@ def test_endpoint_dacl_only_grants_the_current_user(tmp_path):
             kernel.LocalFree(ctypes.cast(text, ctypes.c_void_p))
         if descriptor:
             kernel.LocalFree(descriptor)
+
+
+def test_endpoint_rejects_actual_junction_and_junction_ancestor(tmp_path):
+    import pytest
+
+    from tests.helpers.filesystem import windows_junction
+
+    for nested in (False, True):
+        target = tmp_path / f"target-{nested}"
+        target.mkdir()
+        link = tmp_path / f"link-{nested}"
+        with windows_junction(link, target):
+            directory = link / "private" if nested else link
+            with pytest.raises(PermissionError, match="重解析|junction"):
+                write_private(directory / "control.json", b"private token")
+            assert not list(target.iterdir())

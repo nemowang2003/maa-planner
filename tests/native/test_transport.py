@@ -71,3 +71,121 @@ def test_endpoint_preserves_unrelated_files(tmp_path):
         assert path.read_text() == "keep this file"
 
     asyncio.run(scenario())
+
+
+def test_endpoint_preserves_valid_looking_foreign_descriptor(tmp_path):
+    async def handle(sid, message):
+        return {"result": None}
+
+    async def scenario():
+        path = tmp_path / "private/control.json"
+        path.parent.mkdir(mode=0o700)
+        foreign = (
+            b'{"url":"http://127.0.0.1:12345","token":"foreign-owner-foreign-owner-foreign-owner"}'
+        )
+        path.write_bytes(foreign)
+        server = ControlServer(path, handle)
+        try:
+            with pytest.raises(ValueError, match="归属|属于"):
+                await server.start()
+            assert path.read_bytes() == foreign
+        finally:
+            await server.close()
+
+    asyncio.run(scenario())
+
+
+def test_endpoint_replaces_its_own_stale_descriptor_after_crash(tmp_path):
+    async def handle(sid, message):
+        return {"result": None}
+
+    async def scenario():
+        path = tmp_path / "private/control.json"
+        first = ControlServer(path, handle)
+        await first.start()
+        stale = path.read_bytes()
+        await first.close()
+        # Simulate a crash that left only our descriptor behind, with the lock released.
+        path.write_bytes(stale)
+        second = ControlServer(path, handle)
+        await second.start()
+        try:
+            assert read_endpoint(path).token == second.token
+            assert path.read_bytes() != stale
+        finally:
+            await second.close()
+
+    asyncio.run(scenario())
+
+
+def test_endpoint_does_not_reclaim_a_foreign_replacement_after_prior_ownership(tmp_path):
+    async def handle(sid, message):
+        return {"result": None}
+
+    async def scenario():
+        path = tmp_path / "private/control.json"
+        first = ControlServer(path, handle)
+        await first.start()
+        await first.close()
+        foreign = json.dumps(
+            {"url": "http://127.0.0.1:12345", "token": "different-owner" * 4}
+        ).encode()
+        path.write_bytes(foreign)
+        second = ControlServer(path, handle)
+        with pytest.raises(ValueError, match="归属"):
+            await second.start()
+        await second.close()
+        assert path.read_bytes() == foreign
+
+    asyncio.run(scenario())
+
+
+def test_endpoint_shutdown_preserves_a_replaced_descriptor(tmp_path):
+    async def handle(sid, message):
+        return {"result": None}
+
+    async def scenario():
+        path = tmp_path / "private/control.json"
+        server = ControlServer(path, handle)
+        await server.start()
+        replacement = b"owned by another tool"
+        path.write_bytes(replacement)
+        await server.close()
+        assert path.read_bytes() == replacement
+
+    asyncio.run(scenario())
+
+
+def test_endpoint_publication_failure_keeps_ownership_of_previous_descriptor(tmp_path, monkeypatch):
+    from maa_planner.daemon import transport
+
+    async def handle(sid, message):
+        return {"result": None}
+
+    async def scenario():
+        path = tmp_path / "private/control.json"
+        first = ControlServer(path, handle)
+        await first.start()
+        previous = path.read_bytes()
+        await first.close()
+        path.write_bytes(previous)
+        publish = transport.write_private
+
+        def interrupted(destination, content):
+            if destination == path:
+                raise OSError("publication interrupted")
+            return publish(destination, content)
+
+        with monkeypatch.context() as patch:
+            patch.setattr(transport, "write_private", interrupted)
+            with pytest.raises(OSError, match="interrupted"):
+                await ControlServer(path, handle).start()
+        assert path.read_bytes() == previous
+        final = ControlServer(path, handle)
+        await final.start()
+        try:
+            assert read_endpoint(path).token == final.token
+        finally:
+            await final.close()
+
+    asyncio.run(scenario())

@@ -5,10 +5,16 @@ import stat
 from pathlib import Path
 
 
+def reject_reparse_points(path: Path) -> None:
+    for component in (path, *path.parents):
+        if component.is_symlink() or component.is_junction():
+            raise PermissionError("端点路径不能包含符号链接、junction 或其他目录重解析")
+
+
 def private_directory(path: Path) -> None:
+    reject_reparse_points(path)
     path.mkdir(parents=True, exist_ok=True, mode=0o700)
-    if path.is_symlink():
-        raise PermissionError("端点目录不能为符号链接")
+    reject_reparse_points(path)
     if os.name != "nt":
         info = path.stat()
         if info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) & 0o077:
@@ -80,6 +86,8 @@ def write_private(path: Path, content: bytes) -> None:
 
     from maa_planner.daemon.tools.storage import sync_directory
 
+    private_directory(path.parent)
+    reject_reparse_points(path)
     descriptor, name = tempfile.mkstemp(dir=path.parent, prefix=path.name + ".")
     temporary = Path(name)
     try:
@@ -89,6 +97,7 @@ def write_private(path: Path, content: bytes) -> None:
             stream.write(content)
             stream.flush()
             os.fsync(stream.fileno())
+        reject_reparse_points(path)
         os.replace(temporary, path)
         sync_directory(path.parent)
     finally:

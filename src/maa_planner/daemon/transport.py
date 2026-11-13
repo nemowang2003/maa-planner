@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import hmac
 import json
+import re
 import secrets
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
@@ -14,7 +16,11 @@ import engineio
 import socketio
 from aiohttp import web
 
-from maa_planner.daemon.adapters.security import private_directory, write_private
+from maa_planner.daemon.adapters.security import (
+    private_directory,
+    reject_reparse_points,
+    write_private,
+)
 from maa_planner.daemon.notifications import NotificationHub
 from maa_planner.daemon.tools.locks import lock_file
 from maa_planner.endpoint import read_endpoint
@@ -87,21 +93,59 @@ class ControlServer:
         self._lock = None
         self._serving = False
         self.token = secrets.token_urlsafe(32)
+        self._descriptor_hash: str | None = None
+
+    @property
+    def ownership_path(self) -> Path:
+        return self.path.with_name(self.path.name + ".owner")
+
+    def _owner_digests(self) -> list[str]:
+        path = self.ownership_path
+        reject_reparse_points(path)
+        if not path.exists():
+            return []
+        if not path.is_file() or path.stat().st_size > 1024:
+            raise ValueError("端点归属记录无效")
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as error:
+            raise ValueError("端点归属记录无效") from error
+        if (
+            not isinstance(value, dict)
+            or set(value) != {"kind", "digests"}
+            or value["kind"] != "maa-planner-control-v1"
+            or not isinstance(value["digests"], list)
+            or not 1 <= len(value["digests"]) <= 2
+            or any(
+                not isinstance(v, str) or not re.fullmatch(r"[0-9a-f]{64}", v)
+                for v in value["digests"]
+            )
+        ):
+            raise ValueError("端点归属记录无效")
+        return value["digests"]
+
+    def _existing_digest(self, digests: list[str]) -> str:
+        if not digests or self.path.stat().st_size > 4096:
+            raise ValueError("已有端点文件没有本程序的归属证据，保留原文件")
+        digest = hashlib.sha256(self.path.read_bytes()).hexdigest()
+        if digest not in digests:
+            raise ValueError("已有端点文件与归属记录不匹配，保留原文件")
+        read_endpoint(self.path)
+        return digest
 
     def is_serving(self) -> bool:
         return self._serving
 
     async def start(self) -> None:
         private_directory(self.path.parent)
+        reject_reparse_points(self.path.with_suffix(".lock"))
         self._lock = lock_file(self.path.with_suffix(".lock"))
         self._lock.__enter__()
         try:
             if self.path.is_symlink() or (self.path.exists() and not self.path.is_file()):
                 raise ValueError("端点必须为普通文件")
-            if self.path.exists():
-                # Only replace a stale descriptor produced by this implementation.
-
-                read_endpoint(self.path)
+            digests = self._owner_digests()
+            previous = self._existing_digest(digests) if self.path.exists() else None
             self.runner = web.AppRunner(self.app, access_log=None, shutdown_timeout=2)
             await self.runner.setup()
             site = web.TCPSite(self.runner, "127.0.0.1", 0)
@@ -113,7 +157,18 @@ class ControlServer:
                     "token": self.token,
                 }
             ).encode()
+            digest = hashlib.sha256(content).hexdigest()
+            # Persist proof before publication. Both generations survive a crash
+            # on either side of the descriptor's atomic replacement.
+            ownership = json.dumps(
+                {
+                    "kind": "maa-planner-control-v1",
+                    "digests": [previous, digest] if previous else [digest],
+                }
+            ).encode()
+            await retry_file_sharing(lambda: write_private(self.ownership_path, ownership))
             await retry_file_sharing(lambda: write_private(self.path, content))
+            self._descriptor_hash = digest
             self._serving = True
         except BaseException:
             if self.runner is not None:
@@ -227,7 +282,14 @@ class ControlServer:
             await self.runner.cleanup()
         if self._lock is not None:
             try:
-                await retry_file_sharing(lambda: self.path.unlink(missing_ok=True))
+                reject_reparse_points(self.path)
+                if (
+                    self._descriptor_hash is not None
+                    and self.path.is_file()
+                    and self.path.stat().st_size <= 4096
+                    and hashlib.sha256(self.path.read_bytes()).hexdigest() == self._descriptor_hash
+                ):
+                    await retry_file_sharing(lambda: self.path.unlink(missing_ok=True))
             finally:
                 self._lock.__exit__(None, None, None)
                 self._lock = None

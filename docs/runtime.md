@@ -66,7 +66,7 @@ uv run maa-planner daemon stop
 
 SIGINT／SIGTERM 及 Windows SIGBREAK 请求停止并保留模拟器现场；force 和可捕获信号写入 daemon_interrupted 事件，为当时执行／准备中的 worker 保存 execution_interrupted 告警。重复停止不重复产生事件；告警作为中断记录保留，不因 daemon 重启自动解除。父控制通道 EOF 同样让 worker 停止 Core 并保留模拟器。
 
-Windows 默认状态根目录为 `%LOCALAPPDATA%/maa-planner/daemon/`，包含只保存当前状态的 SQLite、daemon.log、logs、workers 和 recovery；用户级单实例锁及资源锁在其应用父目录。显式 XDG_STATE_HOME 可覆盖应用状态根目录，start/run 的 --state-dir 只覆盖该实例的数据库／日志目录，不改变用户级锁。默认端点文件为应用 state 根下的 control.json，包含仅本机可访问的 Socket.IO 地址及随机令牌，每次启动重新发布；文件权限仅授予当前用户。Windows 默认路径见 [存储归属](configuration.md#存储归属)。异常退出不自动重放操作。明确 Core 步骤错误的[自动恢复排期](daily-step-retry.md)已实现；账号暂停和选择性手动重试见 [控制 API](control-api.md#暂停与历史失败重试)，其余维护排期尚未实现。
+Windows 默认状态根目录为 `%LOCALAPPDATA%/maa-planner/daemon/`，包含只保存当前状态的 SQLite、daemon.log、logs、workers 和 recovery；用户级单实例锁及资源锁在其应用父目录。显式 XDG_STATE_HOME 可覆盖应用状态根目录，start/run 的 --state-dir 只覆盖该实例的数据库／日志目录，不改变用户级锁。默认端点文件为应用 state 根下的 control.json，包含仅本机可访问的 Socket.IO 地址及随机令牌，每次启动重新发布；文件权限仅授予当前用户。Windows 默认路径见 [存储归属](configuration.md#存储归属)。 端点目录及祖先路径不得包含符号链接或 junction；同目录 control.json.owner 保存归属摘要，启动持有固定端点锁后才允许替换本程序留下的旧描述文件。没有归属证据或内容已被替换时保留原文件并拒绝接管，可改用明确的新 --endpoint。关闭也只删除本代发布且内容未被改写的描述文件；归属记录与固定锁保留。异常退出不自动重放操作。明确 Core 步骤错误的[自动恢复排期](daily-step-retry.md)已实现；账号暂停和选择性手动重试见 [控制 API](control-api.md#暂停与历史失败重试)，其余维护排期尚未实现。
 
 日常任务通过 [schedules](configuration.md#日常排期) 配置上线时间、有序任务和 Core 参数。daemon 等待最近业务时刻或状态事件，到期后共用环境准备，分别交给已有 runner；没有 schedules 时不自动生成日常。示例包含静态 Core 任务组合和 expert 基建，默认未启用；它不代表完整目标日常已经实现，需要填写真实文件与账号。日常单次运行／推迟／跳过及账号暂停、选择性重试 API 已实现，见 [控制 API](control-api.md)。自动日程／策略不启动模拟器：worker 发现实例停止时返回 blocked，本次日程结束，不因后续唤醒重放；下次安排重新检查。即使准备期间实例关闭，实际启动前仍拒绝 launch。显式 run 和 game.update API 可以启动模拟器；copilot 要求模拟器和游戏已经运行。
 

@@ -157,7 +157,7 @@ API execution.batch 的成员、policy 一次返回的多项请求共用一次�
 | 发布包、APK、作业响应、热更新 JSON、游戏表 | platformdirs.user_cache_path("maa-planner", appauthor=False)；APK 在 apk，每次更新的安装阶段结束立即删除；作业在 copilot，游戏表在 stage-catalog |
 | SQLite、告警／账本／期限、恢复记录与日志 | state_directory()；默认应用 state 根下 daemon，可由 start/run 的 --state-dir 覆盖数据库／日志根 |
 | 单次配置、附件、链接视图、Core 运行数据 | 安装根 tmp 下私有目录；确认安全退出后清理，恢复隔离未解除时保留 |
-| 控制端点 | 应用 state 根下 control.json，保存 Socket.IO 回环地址与令牌；当前用户私有，退出时删除，独占锁文件保留 |
+| 控制端点 | 应用 state 根下 control.json，保存 Socket.IO 回环地址与令牌；当前用户私有，退出时仅删除本代未被改写的描述文件，独占锁及 control.json.owner 归属记录保留 |
 
 宿主默认根目录（未覆盖配置或环境时）：
 
