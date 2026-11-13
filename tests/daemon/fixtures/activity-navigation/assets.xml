@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Assets provenance="AssetStudio v1.2.1 dump, act55side bundle sha256 9cc49a364810ebb7ebc1f503b7c6de59e6183761b32cc0eed058a4afc4c42ffc; selected serialized objects only">
+  <Asset>
+    <Name>RectTransform_#83</Name>
+    <Container>dyn/activity/[uc]act55side/zonemaps/panel_act55side_map_decor.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-8819782767194531837</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>132</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#167</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-8431113570280746079</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#267</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/shop/templateshop_shop_act55side.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-7926848706464225429</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#572</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-6542398980007865439</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#766</Name>
+    <Container>dyn/activity/[uc]act55side/zonemaps/panel_act55side_map_decor.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-5540945744390973437</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>156</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#885</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_mission_claim_all_btn_view.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-4884665417572967587</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#895</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>-4849707677505367135</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>564</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1033</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-4218743661657533535</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1050</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-4147754280335256671</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>168</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#1122</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_mission_claim_all_btn_view.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>-3830776894310868131</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>584</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1289</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_custom_mission_res_holder.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-3102018657730769681</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1380</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-2670109124931300447</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1509</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-1932350688076246111</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#1651</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>-1312145288418962527</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>580</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1787</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>-657071226348842079</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>180</Size>
+  </Asset>
+  <Asset>
+    <Name>img_title</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_custom_mission_res_holder.prefab</Container>
+    <Type id="213">Sprite</Type>
+    <PathID>-331349205916500948</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>760</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#1938</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_custom_mission_res_holder.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>112483582031744239</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>88</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#1981</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>273780795289031585</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#2119</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>887582361431036833</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>564</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#2158</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>1065636020922274721</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#2250</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>1486611161543922593</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#2285</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>1629935151088587681</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>180</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#2359</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>1972614367368827809</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>180</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#2405</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>2179994963736318881</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>img_bkg</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/shop/title_shop_act55side.prefab</Container>
+    <Type id="213">Sprite</Type>
+    <PathID>2399413215787629850</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>468</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#3075</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>5524122485824148385</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#3103</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>5671582643663393697</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>76</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#3131</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>5794731206515938209</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>76</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#3415</Name>
+    <Container>dyn/activity/[uc]act55side/zonemaps/panel_act55side_map_decor.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>7157834806862419971</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>108</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#3433</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/mission/act55side_mission_claim_all_btn_view.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>7236817883476695901</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#3683</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/shop/templateshop_shop_act55side.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>8364842047791982443</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>184</Size>
+  </Asset>
+  <Asset>
+    <Name>MonoBehaviour_#3727</Name>
+    <Container>dyn/activity/[uc]act55side/zonemaps/panel_act55side_map_decor.prefab</Container>
+    <Type id="114">MonoBehaviour</Type>
+    <PathID>8616559526229383171</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>580</Size>
+  </Asset>
+  <Asset>
+    <Name>RectTransform_#3748</Name>
+    <Container>dyn/activity/[uc]act55side/prefabs/act55side_activity_stage.prefab</Container>
+    <Type id="224">RectTransform</Type>
+    <PathID>8716037293939020705</PathID>
+    <Source>/tmp/maa-assets-full-j86oztj3/cache/activity-assets/bundles/CAB-fe410533f7b6926f3000346bedf3fe7f</Source>
+    <Size>144</Size>
+  </Asset>
+  </Assets>

@@ -1,0 +1,50 @@
+RectTransform Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = 4801926266579309473
+	Quaternionf m_LocalRotation
+		float x = -0
+		float y = -0
+		float z = -0
+		float w = 1
+	Vector3f m_LocalPosition
+		float x = 0
+		float y = 0
+		float z = 0
+	Vector3f m_LocalScale
+		float x = 1
+		float y = 1
+		float z = 1
+	vector m_Children
+		Array Array
+		int size = 3
+			[0]
+			PPtr<Transform> data
+				int m_FileID = 0
+				SInt64 m_PathID = 3321370192115127201
+			[1]
+			PPtr<Transform> data
+				int m_FileID = 0
+				SInt64 m_PathID = -8417966285450390623
+			[2]
+			PPtr<Transform> data
+				int m_FileID = 0
+				SInt64 m_PathID = -8802940810230836319
+	PPtr<Transform> m_Father
+		int m_FileID = 0
+		SInt64 m_PathID = 1972614367368827809
+	Vector2f m_AnchorMin
+		float x = 0.9044378
+		float y = 0.6166111
+	Vector2f m_AnchorMax
+		float x = 0.9044378
+		float y = 0.6166111
+	Vector2f m_AnchoredPosition
+		float x = -0.19995117
+		float y = -0.2999878
+	Vector2f m_SizeDelta
+		float x = 196
+		float y = 88
+	Vector2f m_Pivot
+		float x = 0.5
+		float y = 0.5

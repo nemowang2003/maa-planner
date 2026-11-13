@@ -1,0 +1,24 @@
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = -3281243727052157713
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = -3815229507212551029
+	string m_Name = ""
+	PPtr<$Sprite> _titleImg
+		int m_FileID = 0
+		SInt64 m_PathID = -331349205916500948
+	PPtr<$Sprite> _bgImg
+		int m_FileID = 0
+		SInt64 m_PathID = -6065714766915448945
+	PPtr<$Sprite> _coinImg
+		int m_FileID = 0
+		SInt64 m_PathID = -5654223376119616467
+	PPtr<$Sprite> _picRewardImg
+		int m_FileID = 0
+		SInt64 m_PathID = 0
+	Vector2f _picRewardOffset
+		float x = 0
+		float y = 0

@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {"name": "开始唤醒", "type": "StartUp", "params": {"client_type": "Official", "start_game_enabled": true}},
+    {"name": "公开招募", "type": "Recruit", "params": {"refresh": true, "select": [4, 5], "confirm": [3, 4, 5], "times": 4, "expedite": false}},
+    {"name": "基建换班", "type": "Infrast", "params": {"mode": 0, "facility": ["Trade", "Reception", "Mfg", "Control", "Power", "Office", "Dorm"], "drones": "_NotUse", "threshold": 0.3}},
+    {"name": "理智作战", "type": "Fight", "params": {"stage": "1-7", "medicine": 0, "stone": 0, "times": 1, "series": 1}},
+    {"name": "信用收支", "type": "Mall", "params": {"shopping": true, "buy_first": ["招聘许可", "龙门币"], "blacklist": ["家具零件"]}},
+    {"name": "领取奖励", "type": "Award", "params": {"award": true, "mail": true}}
+  ]
+}
